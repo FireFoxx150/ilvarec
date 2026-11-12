@@ -52,9 +52,9 @@ export function ExportsPanel({ readings, say }: { readings: Reading[]; say: (m: 
   return (
     <section className="panel"><h2>Export for other tools</h2>
       <div className="row">
-        <button className="btn" onClick={() => save(`diabass6-tidepool-${stamp}.json`, toTidepoolJson(readings))}>Tidepool data model (JSON)</button>
-        <button className="btn" onClick={() => save(`diabass6-glucose-mmol-${stamp}.csv`, toCsvAlt(readings, { unit: "mmol", delimiter: ";" }))}>CSV, mmol/L, semicolon</button>
-        <button className="btn" onClick={() => save(`diabass6-glucose-mgdl-${stamp}.csv`, toCsvAlt(readings, { unit: "mgdl", delimiter: "," }))}>CSV, mg/dL, comma</button>
+        <button className="btn" onClick={() => save(`ilvarec-tidepool-${stamp}.json`, toTidepoolJson(readings))}>Tidepool data model (JSON)</button>
+        <button className="btn" onClick={() => save(`ilvarec-glucose-mmol-${stamp}.csv`, toCsvAlt(readings, { unit: "mmol", delimiter: ";" }))}>CSV, mmol/L, semicolon</button>
+        <button className="btn" onClick={() => save(`ilvarec-glucose-mgdl-${stamp}.csv`, toCsvAlt(readings, { unit: "mgdl", delimiter: "," }))}>CSV, mg/dL, comma</button>
       </div>
       <p className="note">These contain blood glucose readings only (control-solution tests are left out). The Tidepool file follows their data model (type smbg, mmol/L, UTC time plus the meter's local time); it is meant for tools that read that model, and importing it into Tidepool itself may need their uploader or API. The semicolon CSV opens correctly in spreadsheets that use a decimal comma. The full backup remains the way to move everything between computers.</p>
     </section>

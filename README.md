@@ -6,7 +6,7 @@ Native desktop app (Tauri 2 + React + TypeScript + Rust). No Chrome, no Google c
 ```bash
 sudo apt install -y build-essential curl wget file libwebkit2gtk-4.1-dev libgtk-3-dev libsoup-3.0-dev libayatana-appindicator3-dev librsvg2-dev libudev-dev pkg-config nodejs npm
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh   # then restart the terminal
-cd diabass6 && npm install
+cd ilvarec && npm install
 npm run tauri build          # produces src-tauri/target/release/bundle/deb/*.deb
 sudo apt install ./src-tauri/target/release/bundle/deb/*.deb
 sudo usermod -aG dialout $USER   # then log out and back in (USB serial permission)
@@ -23,7 +23,7 @@ Insulin tab -> Choose CSV file. Needs a date/time and a units column (header row
 Optional: type (basal/bolus/brand) and note. Duplicates are skipped. Dates follow the "Meter date order" setting.
 
 ## Doctor report
-Doctor report tab -> choose dates -> Print / save as PDF, or Save as HTML file (Documents/DIABASS6).
+Doctor report tab -> choose dates -> Print / save as PDF, or Save as HTML file (Documents/Ilvarec).
 Includes summary, time in range, charts, time-of-day table, day-by-day glucose + insulin, and optional full logs.
 
 ## More features

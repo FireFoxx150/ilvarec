@@ -25,7 +25,7 @@ export default function PrepareView({ readings, insulin, hypos, labs, notes, ket
       const { buildReportPdf } = await import("../lib/pdfReport");
       const bytes = buildReportPdf({ readings, insulin, hypos, labs, notes, ketones, s, from, to, clinicianNote: note, mode: kind, password: pw || undefined,
         opt: { charts: true, compare: true, patterns: true, bands: true, hypos: true, labs: true, notes: true, daily: true, readingLog: logs, insulinLog: logs } });
-      const where = await api.savePdf(`diabass6-${kind === "summary" ? "summary" : "report"}-${from}_to_${to}.pdf`, bytes);
+      const where = await api.savePdf(`ilvarec-${kind === "summary" ? "summary" : "report"}-${from}_to_${to}.pdf`, bytes);
       if (where) { say("Saved " + where); if (remember) set({ lastAppointment: appt }); }
     } catch (e) { say("Couldn't create the PDF: " + e); } finally { setBusy(""); }
   };

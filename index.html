@@ -6,7 +6,7 @@
     <title>Ilvarec</title>
     <script>
       try {
-        var p = JSON.parse(localStorage.getItem("diabass6.prefs") || "{}");
+        var p = JSON.parse(localStorage.getItem("ilvarec.prefs") || "{}");
         var light = p.theme === "light" || (p.theme === "system" && window.matchMedia("(prefers-color-scheme: light)").matches);
         document.documentElement.dataset.theme = light ? "light" : "dark";
         document.documentElement.style.setProperty("--ts", p.text === "xlarge" ? "1.4" : p.text === "large" ? "1.2" : "1");

@@ -31,7 +31,7 @@ export default function DataSettings(p: Props) {
   const [list, setList] = useState<BackupInfo[]>([]);
   const folder = s.backup?.folder ?? "";
 
-  useEffect(() => { if (folder) api.listBackups(folder).then((l) => setList(l.filter((b) => (profileId === "default" ? /^diabass6-backup-\d{4}-/.test(b.name) : b.name.startsWith(`diabass6-backup-${profileId}-`))))).catch(() => setList([])); else setList([]); }, [folder, backup.last, profileId]);
+  useEffect(() => { if (folder) api.listBackups(folder).then((l) => setList(l.filter((b) => (profileId === "default" ? /^ilvarec-backup-\d{4}-/.test(b.name) : b.name.startsWith(`ilvarec-backup-${profileId}-`))))).catch(() => setList([])); else setList([]); }, [folder, backup.last, profileId]);
 
   /* ---- restore / import a Ilvarec backup (plain or password-protected) ---- */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -63,7 +63,7 @@ export default function DataSettings(p: Props) {
   const manualBackup = async () => {
     const plain = JSON.stringify({ app: "Ilvarec", version: 5, settings: s, readings, insulin, hypos, labs, supplies, notes, ketones }, null, 2);
     const out = sec.isProtected && encExport ? await sec.sealText(plain) : plain;
-    say("Saved to " + await api.exportFile(`diabass6-backup-${stamp}${sec.isProtected && encExport ? "-encrypted" : ""}.json`, out));
+    say("Saved to " + await api.exportFile(`ilvarec-backup-${stamp}${sec.isProtected && encExport ? "-encrypted" : ""}.json`, out));
   };
 
   return (<>
@@ -111,9 +111,9 @@ export default function DataSettings(p: Props) {
       <div className="row">
         <button className="btn primary" onClick={manualBackup}>Full backup (JSON)</button>
         {sec.isProtected && <label className="row"><input type="checkbox" checked={encExport} onChange={(e) => setEncExport(e.target.checked)} />Encrypt it</label>}
-        <button className="btn" onClick={async () => say("Saved to " + await api.exportFile(`diabass6-readings-${stamp}.csv`, toCsv(readings)))}>Export readings as CSV</button>
+        <button className="btn" onClick={async () => say("Saved to " + await api.exportFile(`ilvarec-readings-${stamp}.csv`, toCsv(readings)))}>Export readings as CSV</button>
       </div>
-      <p className="note">Files are saved to Documents/DIABASS6. CSV files are never encrypted.</p>
+      <p className="note">Files are saved to Documents/Ilvarec. CSV files are never encrypted.</p>
     </section>
 
     <ExportsPanel readings={readings} say={say} />

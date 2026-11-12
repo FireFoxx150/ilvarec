@@ -289,11 +289,11 @@ fn quarantine_store(app: AppHandle, profile: String) -> Result<String, String> {
 
 #[derive(Serialize)]
 struct BackupInfo { name: String, size: u64, modified: u64 }
-fn is_backup_name(n: &str) -> bool { n.starts_with("diabass6-backup-") && n.ends_with(".json") && !n.contains('/') && !n.contains('\\') }
+fn is_backup_name(n: &str) -> bool { n.starts_with("ilvarec-backup-") && n.ends_with(".json") && !n.contains('/') && !n.contains('\\') }
 
 #[tauri::command]
 fn default_backup_dir(app: AppHandle) -> Result<String, String> {
-    Ok(app.path().document_dir().map_err(|e| e.to_string())?.join("DIABASS6").join("Backups").to_string_lossy().into_owned())
+    Ok(app.path().document_dir().map_err(|e| e.to_string())?.join("Ilvarec").join("Backups").to_string_lossy().into_owned())
 }
 /// Writes one dated backup file atomically, then deletes the oldest ones beyond `keep`.
 #[tauri::command]
@@ -340,7 +340,7 @@ fn save_bytes(path: String, data: Vec<u8>) -> Result<String, String> {
 }
 #[tauri::command]
 fn export_file(app: AppHandle, name: String, content: String) -> Result<String, String> {
-    let dir = app.path().document_dir().map_err(|e| e.to_string())?.join("DIABASS6");
+    let dir = app.path().document_dir().map_err(|e| e.to_string())?.join("Ilvarec");
     fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
     let safe: String = name.chars().filter(|c| c.is_ascii_alphanumeric() || "-_.".contains(*c)).collect();
     let path = dir.join(safe); fs::write(&path, content).map_err(|e| e.to_string())?;

@@ -78,7 +78,7 @@ export default function ReportView({ readings, insulin, hypos, labs, notes, keto
     if (!paper.current) return;
     const title = `Glucose report ${from} to ${to}`;
     const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${title}</title><style>body{margin:0;padding:24px;background:#e9eaf0}@media print{body{padding:0;background:#fff}}${REPORT_CSS}</style></head><body><div class="report">${paper.current.innerHTML}</div></body></html>`;
-    say("Saved to " + (await api.exportFile(`diabass6-report-${from}_to_${to}.html`, html)) + ". Open it in any browser to print or save as PDF.");
+    say("Saved to " + (await api.exportFile(`ilvarec-report-${from}_to_${to}.html`, html)) + ". Open it in any browser to print or save as PDF.");
   };
 
   const [pdfBusy, setPdfBusy] = useState(false);
@@ -88,7 +88,7 @@ export default function ReportView({ readings, insulin, hypos, labs, notes, keto
       await new Promise((r) => setTimeout(r, 30));   // let the button repaint before the (synchronous) PDF build
       const { buildReportPdf } = await import("../lib/pdfReport");
       const bytes = buildReportPdf({ readings, insulin, hypos, labs, notes, ketones, s, from, to, clinicianNote: note, opt });
-      const where = await api.savePdf(`diabass6-report-${from}_to_${to}.pdf`, bytes);
+      const where = await api.savePdf(`ilvarec-report-${from}_to_${to}.pdf`, bytes);
       if (where) say("Saved " + where);
     } catch (e) { say("Couldn't create the PDF: " + e); } finally { setPdfBusy(false); }
   };

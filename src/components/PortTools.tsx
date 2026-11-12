@@ -89,7 +89,7 @@ export function SupportReport({ ports, selected, protocol, log, err, say }: { po
       <p className="note" style={{ marginTop: 0 }}>Collects the port list, USB devices, settings and the last download's trace in one go. It contains no readings other than the dates and values the meter returned.</p>
       <div className="row">
         <button className="btn" disabled={busy} onClick={async () => { setBusy(true); try { await navigator.clipboard.writeText(await build()); say("Support report copied"); } finally { setBusy(false); } }}>Copy support report</button>
-        <button className="btn" disabled={busy} onClick={async () => { setBusy(true); try { say("Saved to " + (await api.exportFile(`diabass6-support-${Date.now()}.txt`, await build()))); } finally { setBusy(false); } }}>Save as file</button>
+        <button className="btn" disabled={busy} onClick={async () => { setBusy(true); try { say("Saved to " + (await api.exportFile(`ilvarec-support-${Date.now()}.txt`, await build()))); } finally { setBusy(false); } }}>Save as file</button>
       </div>
     </section>
   );

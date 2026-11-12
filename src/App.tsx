@@ -101,7 +101,7 @@ export default function App() {
   const runBackup = useCallback(async (raw: string) => {
     const b = latestRef.current.settings.backup; if (!b?.enabled || !b.folder) return;
     const who = prefsRef.current.profile === "default" ? "" : prefsRef.current.profile + "-";
-    try { await api.writeBackup(b.folder, `diabass6-backup-${who}${localIso(Date.now()).slice(0, 10)}.json`, raw, b.keep); setPrefs({ lastBackup: localIso(Date.now()) }); setBackupErr(""); }
+    try { await api.writeBackup(b.folder, `ilvarec-backup-${who}${localIso(Date.now()).slice(0, 10)}.json`, raw, b.keep); setPrefs({ lastBackup: localIso(Date.now()) }); setBackupErr(""); }
     catch (e) { setBackupErr(String(e)); }
   }, [setPrefs]);
   const persist = useCallback(async (st: Store) => {
@@ -570,7 +570,7 @@ function MeterView({ s, set, ports, refresh, busy, bytes, err, log, runRaw, star
         <h2 style={{ margin: 0 }}>Capture log</h2>
         <div className="row">{log.text.trim() && <button className="btn sm" onClick={() => setShowHex(!showHex)}>{showHex ? "Show readings" : "Show trace"}</button>}
           <button className="btn sm" onClick={() => navigator.clipboard.writeText(fullLog(log)).then(() => say("Copied"))}>Copy all</button>
-          <button className="btn sm" onClick={async () => say("Saved to " + await api.exportFile(`diabass6-capture-${Date.now()}.txt`, fullLog(log)))}>Save</button></div>
+          <button className="btn sm" onClick={async () => say("Saved to " + await api.exportFile(`ilvarec-capture-${Date.now()}.txt`, fullLog(log)))}>Save</button></div>
       </div>
       {log.error && <p style={{ color: "var(--high)", marginTop: 0 }}>{log.error}</p>}
       <div className="log">{((showHex || !log.text.trim()) ? log.hex : log.text) || "(nothing was received)"}</div>
@@ -629,7 +629,7 @@ function InsulinView({ insulin, s, days, commitI, say }: { insulin: InsulinDose[
       <div className="row">
         <button className="btn primary" onClick={() => file.current?.click()}>Choose CSV file…</button>
         <input ref={file} type="file" accept=".csv,.txt,text/csv" hidden onChange={(e) => { const f = e.target.files?.[0]; if (f) onFile(f); e.target.value = ""; }} />
-        <button className="btn" disabled={!insulin.length} onClick={async () => say("Saved to " + await api.exportFile(`diabass6-insulin-${new Date().toISOString().slice(0, 10)}.csv`, insulinToCsv(insulin)))}>Export insulin CSV</button>
+        <button className="btn" disabled={!insulin.length} onClick={async () => say("Saved to " + await api.exportFile(`ilvarec-insulin-${new Date().toISOString().slice(0, 10)}.csv`, insulinToCsv(insulin)))}>Export insulin CSV</button>
       </div>
       {pending && preview && <div className="banner" style={{ display: "block", marginBottom: 12 }}>
         <b>Check before importing {pending.name}</b>

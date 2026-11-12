@@ -22,7 +22,7 @@ export function normalizeStore(s: any): Store {
 }
 
 let profile = "default";   // which person's data file is open
-const lsKey = () => (profile === "default" ? "diabass6" : `diabass6:${profile}`);
+const lsKey = () => (profile === "default" ? "ilvarec" : `ilvarec:${profile}`);
 
 export const api = {
   isTauri,
@@ -31,7 +31,7 @@ export const api = {
   async loadRaw(): Promise<string> { return isTauri() ? inv<string>("load_store", { profile }) : localStorage.getItem(lsKey()) ?? ""; },
   async loadBak(): Promise<string> { return isTauri() ? inv<string>("load_store_bak", { profile }) : ""; },
   async saveRaw(raw: string) { if (isTauri()) await inv("save_store", { profile, data: raw }); else localStorage.setItem(lsKey(), raw); },
-  async quarantine(forProfile?: string): Promise<string> { const p = forProfile ?? profile; if (isTauri()) return inv<string>("quarantine_store", { profile: p }); localStorage.removeItem(p === "default" ? "diabass6" : `diabass6:${p}`); return ""; },
+  async quarantine(forProfile?: string): Promise<string> { const p = forProfile ?? profile; if (isTauri()) return inv<string>("quarantine_store", { profile: p }); localStorage.removeItem(p === "default" ? "ilvarec" : `ilvarec:${p}`); return ""; },
   /* ---- backups ---- */
   async defaultBackupDir(): Promise<string> { return isTauri() ? inv<string>("default_backup_dir") : ""; },
   async writeBackup(folder: string, name: string, content: string, keep: number): Promise<string> { return inv<string>("write_backup", { folder, name, content, keep }); },
