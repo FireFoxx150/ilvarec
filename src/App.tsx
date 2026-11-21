@@ -414,7 +414,7 @@ export default function App() {
 }
 
 const Tile = ({ k, v, u }: { k: string; v: string; u: string }) => <div className="tile"><div className="k">{k}</div><div className="v">{v}<span className="u">{u}</span></div></div>;
-const Empty = ({ go }: { go: () => void }) => <div className="panel empty"><p>No readings yet.</p><button className="btn primary" onClick={go}>Download from meter</button></div>;
+const Empty = ({ go }: { go: () => void }) => <div className="panel empty"><p>No readings yet. Download from your meter or import a file to start.</p><button className="btn primary" onClick={go}>Download from meter</button></div>;
 
 /* ---------------- Readings ---------------- */
 function ReadingsView({ readings, notes, s, commit }: { readings: Reading[]; notes: DayNote[]; s: Settings; commit: (r: Reading[], m?: string) => void }) {

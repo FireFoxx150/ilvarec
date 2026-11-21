@@ -1,6 +1,6 @@
 :root {
   --bg: #12141c; --surface: #1a1d28; --raised: #222636; --line: #2c3144;
-  --text: #e8eaf2; --muted: #8e94ab; --accent: #9aa6ff; --accent-ink: #12141c;
+  --text: #e8eaf2; --muted: #8e94ab; --accent: #d2a8ff; --accent-ink: #12141c;
   --ok: #5cd6b0; --low: #ffc15e; --high: #ff7a8a; --ins: #6ec1ff;
   --font: "Inter", "Noto Sans", "Ubuntu", system-ui, sans-serif;
   color-scheme: dark;
@@ -91,8 +91,8 @@ td.r, th.r { text-align: right; }
 
 :root[data-theme="light"] {
   --bg: #f4f5f9; --surface: #ffffff; --raised: #eceef5; --line: #d5d8e3;
-  --text: #171923; --muted: #5a6074; --accent: #4552d9; --accent-ink: #ffffff;
-  --ok: #0b8f6b; --low: #b36a00; --high: #c2263f; --ins: #1b6fb3; color-scheme: light;
+  --text: #171923; --muted: #5a6074; --accent: #7a3aa6; --accent-ink: #ffffff;
+  --ok: #087153; --low: #b36a00; --high: #c2263f; --ins: #1b6fb3; color-scheme: light;
 }
 :root[data-theme="light"] .log { color: #2d3347; }
 :root[data-theme="light"] .toast, :root[data-theme="light"] .stack .toast { box-shadow: 0 10px 30px #1b21332e; }

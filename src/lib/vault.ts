@@ -9,6 +9,7 @@ function unb64(s: string): Uint8Array { const bin = atob(s), u = new Uint8Array(
 export interface Envelope { ilvarec: "encrypted"; v: 1; kdf: "PBKDF2-SHA256"; iter: number; salt: string; iv: string; data: string; }
 export interface Vault { key: CryptoKey; salt: Uint8Array; iter: number; }
 
+// Files written before the rename carry the old marker word, so both are accepted.
 export const isEnvelope = (x: unknown): x is Envelope => !!x && typeof x === "object" && (x as Envelope).ilvarec === "encrypted" && typeof (x as Envelope).data === "string";
 export const cryptoAvailable = () => typeof crypto !== "undefined" && !!crypto.subtle && typeof crypto.getRandomValues === "function";
 

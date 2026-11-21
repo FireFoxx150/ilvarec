@@ -45,12 +45,12 @@ export default function DataSettings(p: Props) {
       const ms = mergeSupplies(supplies, Array.isArray(j.supplies) ? j.supplies.map((x: Supply) => ({ ...x, id: x.id || newId() })) : []);
       const mn = mergeNotes(notes, Array.isArray(j.notes) ? j.notes.map((n: DayNote) => ({ ...n, id: n.id || newId(), tags: n.tags ?? [] })) : []);
       const mk = mergeKetones(ketones, Array.isArray(j.ketones) ? j.ketones.map((k: KetoneReading) => ({ ...k, id: k.id || newId() })) : []);
-      commit(m.all, `Restored ${m.added} readings, ${mi.added} doses, ${mh.added} low-glucose events, ${ml.added} lab results, ${mn.added} notes, ${mk.added} ketone readings (duplicates skipped)`, { insulin: mi.all, hypos: mh.all, labs: ml.all, supplies: ms.all, notes: mn.all, ketones: mk.all });
+      commit(m.all, `Imported ${m.added} readings, ${mi.added} doses, ${mh.added} low-glucose events, ${ml.added} lab results, ${mn.added} notes, ${mk.added} ketone readings. Items already stored were skipped.`, { insulin: mi.all, hypos: mh.all, labs: ml.all, supplies: ms.all, notes: mn.all, ketones: mk.all });
       if (j.settings) set({ ...j.settings, port: s.port, meterId: s.meterId, lastDownload: s.lastDownload, clockOffsetMin: s.clockOffsetMin, backup: s.backup });
-    } catch { say("That file isn't a valid Ilvarec backup."); }
+    } catch { say("Nothing was imported. This file is not an Ilvarec backup."); }
   };
   const restoreText = (text: string) => {
-    let j; try { j = JSON.parse(text); } catch { say("That file isn't a valid Ilvarec backup."); return; }
+    let j; try { j = JSON.parse(text); } catch { say("Nothing was imported. This file is not an Ilvarec backup."); return; }
     if (isEnvelope(j)) { setPending(j); setPw(""); setPwErr(""); } else applyBackup(j);
   };
   const unlockBackup = async () => {

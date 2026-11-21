@@ -2,7 +2,7 @@
 // and embedded in the exported HTML file, so both look identical.
 export const REPORT_CSS = `
 @page { size: A4; margin: 14mm; }
-.report { --raised:#f1f2f6; --line:#cfd2dc; --text:#14161d; --muted:#5b6070; --accent:#3b4bd6; --ins:#1b6fb3; --ok:#0b8f6b; --low:#b86a00; --high:#c0263d;
+.report { --raised:#f1f2f6; --line:#cfd2dc; --text:#14161d; --muted:#5b6070; --accent:#7a3aa6; --ins:#1b6fb3; --ok:#087153; --low:#b86a00; --high:#c0263d;
   font-family: Inter, "Noto Sans", "Ubuntu", system-ui, sans-serif; font-size: 12px; line-height: 1.45; color: var(--text); background: #fff;
   max-width: 210mm; margin: 0 auto; padding: 16mm 15mm; box-shadow: 0 8px 40px #0007; border-radius: 4px; font-variant-numeric: tabular-nums; }
 .report, .report * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
